@@ -197,7 +197,7 @@ describe('GoogleMaps', () => {
         expect.any(Function)
       );
 
-      expect(wrapper.instance().listeners).toHaveLength(4);
+      expect(wrapper.instance().listeners).toHaveLength(7);
     });
   });
 
@@ -545,7 +545,7 @@ describe('GoogleMaps', () => {
 
       simulateMapReadyEvent(google);
 
-      expect(wrapper.instance().listeners).toHaveLength(4);
+      expect(wrapper.instance().listeners).toHaveLength(7);
 
       const internalListeners = wrapper.instance().listeners.slice();
 
