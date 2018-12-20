@@ -123,9 +123,20 @@ class GoogleMaps extends Component {
       }
     };
 
-    this.listeners.push(this.instance.addListener('center_changed', onChange));
-    this.listeners.push(this.instance.addListener('zoom_changed', onChange));
-    this.listeners.push(this.instance.addListener('dragstart', onChange));
+    const onEvent = type => (event) => {
+      if (this.isUserInteraction) {
+        this.props.onEvent({
+          instance : this.instance,
+          type,
+          event
+        })
+      }
+    };
+    
+    ['center_changed', 'zoom_changed', 'dragstart'].forEach(type => {
+      this.listeners.push(this.instance.addListener(type, onChange));
+      this.listeners.push(this.instance.addListener(type, onEvent(type)));
+    })
 
     this.listeners.push(
       this.instance.addListener('idle', () => {

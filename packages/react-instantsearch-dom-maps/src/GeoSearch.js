@@ -14,6 +14,7 @@ class GeoSearch extends Component {
     enableRefine: PropTypes.bool,
     enableRefineOnMapMove: PropTypes.bool,
     defaultRefinement: BoundingBoxPropType,
+    onRawEvent : PropTypes.func
   };
 
   static defaultProps = {
@@ -33,6 +34,7 @@ class GeoSearch extends Component {
       enableRefine,
       enableRefineOnMapMove,
       defaultRefinement,
+      onRawEvent,
       ...mapOptions
     } = this.props;
 
@@ -61,6 +63,7 @@ class GeoSearch extends Component {
             boundingBox={boundingBox}
             boundingBoxPadding={boundingBoxPadding}
             onChange={onChange}
+            onEvent={this.props.onRawEvent}
             onIdle={onIdle}
             shouldUpdate={shouldUpdate}
           >
